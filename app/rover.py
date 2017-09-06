@@ -1,8 +1,12 @@
 import time
 from app.commands import Command
 from app.cardinal_directions import Direction
+from app.compass import Compass
 
 class Rover:
+
+    compass = Compass
+
     isWorking = True
 
     XMIN = 0
@@ -24,13 +28,13 @@ class Rover:
     def __init__(self, x, y, orientation):
         self.x = x
         self.y = y
-        self.orientation = orientation
+        self.compass = Compass(orientation)
 
     def getPosition(self):
         return (self.x, self.y)
 
     def getOrientation(self):
-        return (self.orientation)
+        return (self.compass.currentDirection)
 
     def move(self, command_list):
         for action in command_list:
@@ -44,7 +48,7 @@ class Rover:
                 self.turnsLeft()
             if action == Command.RIGHT:
                 self.turnsRight()
-            #time.sleep(0.5)
+            # time.sleep(0.5)
             print(self.createMapMars())
 
     def moveForward(self):
@@ -55,9 +59,6 @@ class Rover:
                 self.y -= 1
                 self.crossEdgeControl()
                 self.stopWorking()
-
-
-
 
         elif self.getOrientation() == Direction.WEST:
             self.x -= 1
@@ -112,24 +113,10 @@ class Rover:
                 self.stopWorking()
 
     def turnsLeft(self):
-        if self.getOrientation() == Direction.NORTH:
-            self.orientation = Direction.WEST
-        elif self.getOrientation() == Direction.WEST:
-            self.orientation = Direction.SOUTH
-        elif self.getOrientation() == Direction.SOUTH:
-            self.orientation = Direction.EST
-        elif self.getOrientation() == Direction.EST:
-            self.orientation = Direction.NORTH
+        self.compass.rotate90Clockwise()
 
     def turnsRight(self):
-        if self.getOrientation() == Direction.NORTH:
-            self.orientation = Direction.EST
-        elif self.getOrientation() == Direction.WEST:
-            self.orientation = Direction.NORTH
-        elif self.getOrientation() == Direction.SOUTH:
-            self.orientation = Direction.WEST
-        elif self.getOrientation() == Direction.EST:
-            self.orientation = Direction.SOUTH
+        self.compass.rotate90CounterClockwise()
 
     def crossEdgeControl(self):
         if self.x == self.XMAX + 1:
