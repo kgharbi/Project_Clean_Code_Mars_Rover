@@ -33,9 +33,6 @@ class Rover:
     def getPosition(self):
         return (self.x, self.y)
 
-    def getOrientation(self):
-        return (self.compass.currentDirection)
-
     def move(self, command_list):
         for action in command_list:
             if action == Command.FORWARD:
@@ -52,7 +49,7 @@ class Rover:
             print(self.createMapMars())
 
     def moveForward(self):
-        if self.getOrientation() == Direction.NORTH:
+        if self.compass.getDirection() == Direction.NORTH:
             self.y += 1
             self.crossEdgeControl()
             if (self.mars_grid[9 - self.x][self.y] == True):
@@ -60,21 +57,21 @@ class Rover:
                 self.crossEdgeControl()
                 self.stopWorking()
 
-        elif self.getOrientation() == Direction.WEST:
+        elif self.compass.getDirection() == Direction.WEST:
             self.x -= 1
             self.crossEdgeControl()
             if (self.mars_grid[9 - self.x][self.y] == True):
                 self.x += 1
                 self.crossEdgeControl()
                 self.stopWorking()
-        elif self.getOrientation() == Direction.SOUTH:
+        elif self.compass.getDirection() == Direction.SOUTH:
             self.y -= 1
             self.crossEdgeControl()
             if (self.mars_grid[9 - self.x][self.y] == True):
                 self.y += 1
                 self.crossEdgeControl()
                 self.stopWorking()
-        elif self.getOrientation() == Direction.EST:
+        elif self.compass.getDirection() == Direction.EST:
             self.x += 1
             self.crossEdgeControl()
             if (self.mars_grid[9 - self.x][self.y] == True):
@@ -83,28 +80,28 @@ class Rover:
                 self.stopWorking()
 
     def moveBackward(self):
-        if self.getOrientation() == Direction.NORTH:
+        if self.compass.getDirection() == Direction.NORTH:
             self.y -= 1
             self.crossEdgeControl()
             if (self.mars_grid[9 - self.x][self.y] == True):
                 self.y += 1
                 self.crossEdgeControl()
                 self.stopWorking()
-        elif self.getOrientation() == Direction.WEST:
+        elif self.compass.getDirection() == Direction.WEST:
             self.x += 1
             self.crossEdgeControl()
             if (self.mars_grid[9 - self.x][self.y] == True):
                 self.x -= 1
                 self.crossEdgeControl()
                 self.stopWorking()
-        elif self.getOrientation() == Direction.SOUTH:
+        elif self.compass.getDirection() == Direction.SOUTH:
             self.y += 1
             self.crossEdgeControl()
             if (self.mars_grid[9 - self.x][self.y] == True):
                 self.y -= 1
                 self.crossEdgeControl()
                 self.stopWorking()
-        elif self.getOrientation() == Direction.EST:
+        elif self.compass.getDirection() == Direction.EST:
             self.x -= 1
             self.crossEdgeControl()
             if (self.mars_grid[9 - self.x][self.y] == True):
@@ -148,3 +145,7 @@ class Rover:
 
             map_mars += '\n'
         return map_mars
+
+    def getOrientation(self):
+        return self.compass.getDirection()
+
