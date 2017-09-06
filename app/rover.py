@@ -1,5 +1,6 @@
 import time
 from app.commands import Command
+from app.cardinal_directions import Direction
 
 class Rover:
     isWorking = True
@@ -47,7 +48,7 @@ class Rover:
             print(self.createMapMars())
 
     def moveForward(self):
-        if self.getOrientation() == 'N':
+        if self.getOrientation() == Direction.NORTH:
             self.y += 1
             self.crossEdgeControl()
             if (self.mars_grid[9 - self.x][self.y] == True):
@@ -58,21 +59,21 @@ class Rover:
 
 
 
-        elif self.getOrientation() == 'W':
+        elif self.getOrientation() == Direction.WEST:
             self.x -= 1
             self.crossEdgeControl()
             if (self.mars_grid[9 - self.x][self.y] == True):
                 self.x += 1
                 self.crossEdgeControl()
                 self.stopWorking()
-        elif self.getOrientation() == 'S':
+        elif self.getOrientation() == Direction.SOUTH:
             self.y -= 1
             self.crossEdgeControl()
             if (self.mars_grid[9 - self.x][self.y] == True):
                 self.y += 1
                 self.crossEdgeControl()
                 self.stopWorking()
-        elif self.getOrientation() == 'E':
+        elif self.getOrientation() == Direction.EST:
             self.x += 1
             self.crossEdgeControl()
             if (self.mars_grid[9 - self.x][self.y] == True):
@@ -81,28 +82,28 @@ class Rover:
                 self.stopWorking()
 
     def moveBackward(self):
-        if self.getOrientation() == 'N':
+        if self.getOrientation() == Direction.NORTH:
             self.y -= 1
             self.crossEdgeControl()
             if (self.mars_grid[9 - self.x][self.y] == True):
                 self.y += 1
                 self.crossEdgeControl()
                 self.stopWorking()
-        elif self.getOrientation() == 'W':
+        elif self.getOrientation() == Direction.WEST:
             self.x += 1
             self.crossEdgeControl()
             if (self.mars_grid[9 - self.x][self.y] == True):
                 self.x -= 1
                 self.crossEdgeControl()
                 self.stopWorking()
-        elif self.getOrientation() == 'S':
+        elif self.getOrientation() == Direction.SOUTH:
             self.y += 1
             self.crossEdgeControl()
             if (self.mars_grid[9 - self.x][self.y] == True):
                 self.y -= 1
                 self.crossEdgeControl()
                 self.stopWorking()
-        elif self.getOrientation() == 'E':
+        elif self.getOrientation() == Direction.EST:
             self.x -= 1
             self.crossEdgeControl()
             if (self.mars_grid[9 - self.x][self.y] == True):
@@ -111,24 +112,24 @@ class Rover:
                 self.stopWorking()
 
     def turnsLeft(self):
-        if self.getOrientation() == 'N':
-            self.orientation = 'W'
-        elif self.getOrientation() == 'W':
-            self.orientation = 'S'
-        elif self.getOrientation() == 'S':
-            self.orientation = 'E'
-        elif self.getOrientation() == 'E':
-            self.orientation = 'N'
+        if self.getOrientation() == Direction.NORTH:
+            self.orientation = Direction.WEST
+        elif self.getOrientation() == Direction.WEST:
+            self.orientation = Direction.SOUTH
+        elif self.getOrientation() == Direction.SOUTH:
+            self.orientation = Direction.EST
+        elif self.getOrientation() == Direction.EST:
+            self.orientation = Direction.NORTH
 
     def turnsRight(self):
-        if self.getOrientation() == 'N':
-            self.orientation = 'E'
-        elif self.getOrientation() == 'W':
-            self.orientation = 'N'
-        elif self.getOrientation() == 'S':
-            self.orientation = 'W'
-        elif self.getOrientation() == 'E':
-            self.orientation = 'S'
+        if self.getOrientation() == Direction.NORTH:
+            self.orientation = Direction.EST
+        elif self.getOrientation() == Direction.WEST:
+            self.orientation = Direction.NORTH
+        elif self.getOrientation() == Direction.SOUTH:
+            self.orientation = Direction.WEST
+        elif self.getOrientation() == Direction.EST:
+            self.orientation = Direction.SOUTH
 
     def crossEdgeControl(self):
         if self.x == self.XMAX + 1:
