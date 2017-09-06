@@ -1,10 +1,13 @@
 import time
-
-from app.const import Const as CONSTANT
-
+from commands import Command
 
 class Rover:
     isWorking = True
+
+    XMIN = 0
+    YMIN = 0
+    XMAX = 9
+    YMAX = 9
 
     mars_grid = [[False, False, False, False, False, False, False, False, False, True],
                  [False, False, False, False, False, False, False, False, False, False],
@@ -30,15 +33,15 @@ class Rover:
 
     def move(self, command_list):
         for action in command_list:
-            if action == 'f':
+            if action == Command.FORWARD:
                 self.moveForward()
                 self.crossEdgeControl()
-            if action == 'b':
+            if action == Command.BACKWARD:
                 self.moveBackward()
                 self.crossEdgeControl()
-            if action == 'l':
+            if action == Command.LEFT:
                 self.turnsLeft()
-            if action == 'r':
+            if action == Command.RIGHT:
                 self.turnsRight()
             time.sleep(0.5)
             print(self.createMapMars())
@@ -121,18 +124,17 @@ class Rover:
         elif self.getOrientation() == 'S':
             self.orientation = 'W'
         elif self.getOrientation() == 'E':
-
             self.orientation = 'S'
 
     def crossEdgeControl(self):
-        if self.x == CONSTANT.XMAX + 1:
-            self.x = CONSTANT.XMIN
-        if self.y == CONSTANT.YMAX + 1:
-            self.y = CONSTANT.YMIN
-        if self.x == CONSTANT.XMIN - 1:
-            self.x = CONSTANT.XMAX
-        if self.y == CONSTANT.YMIN - 1:
-            self.y = CONSTANT.YMAX
+        if self.x == self.XMAX + 1:
+            self.x = self.XMIN
+        if self.y == self.YMAX + 1:
+            self.y = self.YMIN
+        if self.x == self.XMIN - 1:
+            self.x = self.XMAX
+        if self.y == self.YMIN - 1:
+            self.y = self.YMAX
 
     def stopWorking(self):
         self.isWorking = False
@@ -142,8 +144,8 @@ class Rover:
 
     def createMapMars(self):
         map_mars = ''
-        for i in range(CONSTANT.XMAX + 1):
-            for j in range(CONSTANT.YMAX + 1):
+        for i in range(self.XMAX + 1):
+            for j in range(self.YMAX + 1):
                 if self.mars_grid[i][j] == False:
                     if (self.x == i and self.y == j):
                         map_mars += 'R'
