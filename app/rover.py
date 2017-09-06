@@ -1,5 +1,5 @@
 import time
-from commands import Command
+from app.commands import Command
 
 class Rover:
     isWorking = True

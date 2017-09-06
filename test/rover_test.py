@@ -1,4 +1,5 @@
 from app.rover import Rover
+from app.commands import Command
 
 
 class RoverTest:
@@ -20,7 +21,7 @@ class RoverTest:
         # given
         rover = Rover(5, 5, 'N')
         command_list = []
-        command_list.append('f')
+        command_list.append(Command.FORWARD)
 
         # when
         rover.move(command_list)
@@ -32,7 +33,7 @@ class RoverTest:
         # given
         rover = Rover(5, 5, 'S')
         command_list = []
-        command_list.append('f')
+        command_list.append(Command.FORWARD)
 
         # when
         rover.move(command_list)
@@ -44,7 +45,7 @@ class RoverTest:
         # given
         rover = Rover(5, 5, 'W')
         command_list = []
-        command_list.append('f')
+        command_list.append(Command.FORWARD)
 
         # when
         rover.move(command_list)
@@ -56,7 +57,7 @@ class RoverTest:
         # given
         rover = Rover(5, 5, 'E')
         command_list = []
-        command_list.append('f')
+        command_list.append(Command.FORWARD)
 
         # when
         rover.move(command_list)
@@ -68,7 +69,7 @@ class RoverTest:
         # given
         rover = Rover(5, 5, 'N')
         command_list = []
-        command_list.append('b')
+        command_list.append(Command.BACKWARD)
 
         # when
         rover.move(command_list)
@@ -80,7 +81,7 @@ class RoverTest:
         # given
         rover = Rover(5, 5, 'S')
         command_list = []
-        command_list.append('b')
+        command_list.append(Command.BACKWARD)
 
         # when
         rover.move(command_list)
@@ -92,7 +93,7 @@ class RoverTest:
         # given
         rover = Rover(5, 5, 'W')
         command_list = []
-        command_list.append('b')
+        command_list.append(Command.BACKWARD)
 
         # when
         rover.move(command_list)
@@ -104,7 +105,7 @@ class RoverTest:
         # given
         rover = Rover(5, 5, 'E')
         command_list = []
-        command_list.append('b')
+        command_list.append(Command.BACKWARD)
 
         # when
         rover.move(command_list)
@@ -116,7 +117,7 @@ class RoverTest:
         # given
         rover = Rover(5, 5, 'S')
         command_list = []
-        command_list.append('l')
+        command_list.append(Command.LEFT)
 
         # when
         rover.move(command_list)
@@ -128,7 +129,7 @@ class RoverTest:
         # given
         rover = Rover(5, 5, 'N')
         command_list = []
-        command_list.append('l')
+        command_list.append(Command.LEFT)
 
         # when
         rover.move(command_list)
@@ -140,7 +141,7 @@ class RoverTest:
         # given
         rover = Rover(5, 5, 'E')
         command_list = []
-        command_list.append('l')
+        command_list.append(Command.LEFT)
 
         # when
         rover.move(command_list)
@@ -152,7 +153,7 @@ class RoverTest:
         # given
         rover = Rover(5, 5, 'W')
         command_list = []
-        command_list.append('l')
+        command_list.append(Command.LEFT)
 
         # when
         rover.move(command_list)
@@ -164,7 +165,7 @@ class RoverTest:
         # given
         rover = Rover(5, 5, 'S')
         command_list = []
-        command_list.append('r')
+        command_list.append(Command.RIGHT)
 
         # when
         rover.move(command_list)
@@ -177,7 +178,7 @@ class RoverTest:
         rover = Rover(5, 5, 'N')
 
         command_list = []
-        command_list.append('r')
+        command_list.append(Command.RIGHT)
 
         # when
         rover.move(command_list)
@@ -190,7 +191,7 @@ class RoverTest:
         rover = Rover(5, 5, 'W')
 
         command_list = []
-        command_list.append('r')
+        command_list.append(Command.RIGHT)
 
         # when
         rover.move(command_list)
@@ -203,7 +204,7 @@ class RoverTest:
         rover = Rover(5, 5, 'E')
 
         command_list = []
-        command_list.append('r')
+        command_list.append(Command.RIGHT)
 
         # when
         rover.move(command_list)
@@ -216,7 +217,7 @@ class RoverTest:
         rover = Rover(5, 9, 'N')
 
         command_list = []
-        command_list.append('f')
+        command_list.append(Command.FORWARD)
 
         # when
         rover.move(command_list)
@@ -229,7 +230,7 @@ class RoverTest:
         rover = Rover(5, 0, 'S')
 
         command_list = []
-        command_list.append('f')
+        command_list.append(Command.FORWARD)
 
         # when
         rover.move(command_list)
@@ -242,7 +243,7 @@ class RoverTest:
         rover = Rover(0, 5, 'W')
 
         command_list = []
-        command_list.append('f')
+        command_list.append(Command.FORWARD)
 
         # when
         rover.move(command_list)
@@ -255,7 +256,7 @@ class RoverTest:
         rover = Rover(9, 5, 'E')
 
         command_list = []
-        command_list.append('f')
+        command_list.append(Command.FORWARD)
 
         # when
         rover.move(command_list)
@@ -268,7 +269,7 @@ class RoverTest:
         rover = Rover(5, 0, 'N')
 
         command_list = []
-        command_list.append('b')
+        command_list.append(Command.BACKWARD)
 
         # when
         rover.move(command_list)
@@ -281,7 +282,7 @@ class RoverTest:
         rover = Rover(5, 9, 'S')
 
         command_list = []
-        command_list.append('b')
+        command_list.append(Command.BACKWARD)
 
         # when
         rover.move(command_list)
@@ -294,7 +295,7 @@ class RoverTest:
         rover = Rover(9, 5, 'W')
 
         command_list = []
-        command_list.append('b')
+        command_list.append(Command.BACKWARD)
 
         # when
         rover.move(command_list)
@@ -307,7 +308,7 @@ class RoverTest:
         rover = Rover(0, 5, 'E')
 
         command_list = []
-        command_list.append('b')
+        command_list.append(Command.BACKWARD)
 
         # when
         rover.move(command_list)
@@ -320,7 +321,7 @@ class RoverTest:
         rover = Rover(9, 8, 'N')
 
         command_list = []
-        command_list.append('f')
+        command_list.append(Command.FORWARD)
 
         # when
         rover.move(command_list)
@@ -333,7 +334,7 @@ class RoverTest:
         rover = Rover(9, 0, 'S')
 
         command_list = []
-        command_list.append('f')
+        command_list.append(Command.FORWARD)
 
         # when
         rover.move(command_list)
@@ -346,7 +347,7 @@ class RoverTest:
         rover = Rover(0, 9, 'W')
 
         command_list = []
-        command_list.append('f')
+        command_list.append(Command.FORWARD)
 
         # when
         rover.move(command_list)
@@ -359,7 +360,7 @@ class RoverTest:
         rover = Rover(8, 9, 'E')
 
         command_list = []
-        command_list.append('f')
+        command_list.append(Command.FORWARD)
 
         # when
         rover.move(command_list)
@@ -372,7 +373,7 @@ class RoverTest:
         rover = Rover(9, 0, 'N')
 
         command_list = []
-        command_list.append('b')
+        command_list.append(Command.BACKWARD)
 
         # when
         rover.move(command_list)
@@ -385,7 +386,7 @@ class RoverTest:
         rover = Rover(9, 8, 'S')
 
         command_list = []
-        command_list.append('b')
+        command_list.append(Command.BACKWARD)
 
         # when
         rover.move(command_list)
@@ -398,7 +399,7 @@ class RoverTest:
         rover = Rover(8, 9, 'W')
 
         command_list = []
-        command_list.append('b')
+        command_list.append(Command.BACKWARD)
 
         # when
         rover.move(command_list)
@@ -411,7 +412,7 @@ class RoverTest:
         rover = Rover(0, 9, 'E')
 
         command_list = []
-        command_list.append('b')
+        command_list.append(Command.BACKWARD)
 
         # when
         rover.move(command_list)
@@ -424,7 +425,7 @@ class RoverTest:
         rover = Rover(0, 9, 'E')
 
         command_list = []
-        command_list.append('b')
+        command_list.append(Command.BACKWARD)
 
         # when
         rover.move(command_list)
