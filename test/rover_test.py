@@ -106,8 +106,7 @@ class RoverTest:
     def test_that_it_rolls_backward_when_it_receives_b_commmand_and_is_oriented_est(self):
         # given
         rover = Rover(5, 5, Direction.EST)
-        command_list = []
-        command_list.append(Command.BACKWARD)
+        command_list = [Command.BACKWARD]
 
         # when
         rover.move(command_list)

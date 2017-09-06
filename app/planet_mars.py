@@ -38,6 +38,8 @@ class PlanetMars:
         planetCoordX = 9 - newCoordinatesX
         planetCoordY = newCoordinatesY
 
-        print ("A", self.getCell(planetCoordX, planetCoordY) == '')
+        if (self.getCell(planetCoordX, planetCoordY) == '' or self.getCell(planetCoordX, planetCoordY) == 'R'):
+            return True
+        else:
+            return False
 
-        return (self.getCell(planetCoordX, planetCoordY) == '')
