@@ -1,6 +1,8 @@
 from app.rover import Rover
 from app.commands import Command
 from app.cardinal_directions import Direction
+from app.planet_mars import PlanetMars
+
 
 class RoverTest:
     def test_that_it_returns_coordinates(self):
