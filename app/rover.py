@@ -1,6 +1,7 @@
 import time
 from app.commands import Command
 from app.cardinal_directions import Direction
+from app.planet_mars import PlanetMars
 
 class Rover:
     isWorking = True
@@ -10,16 +11,7 @@ class Rover:
     XMAX = 9
     YMAX = 9
 
-    mars_grid = [[False, False, False, False, False, False, False, False, False, True],
-                 [False, False, False, False, False, False, False, False, False, False],
-                 [False, False, False, False, False, False, False, False, False, False],
-                 [False, False, False, False, False, False, False, False, False, False],
-                 [False, False, False, False, False, False, False, False, False, False],
-                 [False, False, False, False, False, False, False, False, False, False],
-                 [False, False, False, False, False, False, False, False, False, False],
-                 [False, False, False, False, False, False, False, False, False, False],
-                 [False, False, False, False, False, False, False, False, False, False],
-                 [False, False, False, False, False, False, False, False, False, False]]
+    mars = PlanetMars(10,10)
 
     def __init__(self, x, y, orientation):
         self.x = x
@@ -51,7 +43,7 @@ class Rover:
         if self.getOrientation() == Direction.NORTH:
             self.y += 1
             self.crossEdgeControl()
-            if (self.mars_grid[9 - self.x][self.y] == True):
+            if (self.mars.getCell(9 - self.x,self.y) == 'O'):
                 self.y -= 1
                 self.crossEdgeControl()
                 self.stopWorking()
@@ -62,21 +54,21 @@ class Rover:
         elif self.getOrientation() == Direction.WEST:
             self.x -= 1
             self.crossEdgeControl()
-            if (self.mars_grid[9 - self.x][self.y] == True):
+            if (self.mars.getCell(9 - self.x,self.y) == 'O'):
                 self.x += 1
                 self.crossEdgeControl()
                 self.stopWorking()
         elif self.getOrientation() == Direction.SOUTH:
             self.y -= 1
             self.crossEdgeControl()
-            if (self.mars_grid[9 - self.x][self.y] == True):
+            if (self.mars.getCell(9 - self.x,self.y) == 'O'):
                 self.y += 1
                 self.crossEdgeControl()
                 self.stopWorking()
         elif self.getOrientation() == Direction.EST:
             self.x += 1
             self.crossEdgeControl()
-            if (self.mars_grid[9 - self.x][self.y] == True):
+            if (self.mars.getCell(9 - self.x, self.y) == 'O'):
                 self.x -= 1
                 self.crossEdgeControl()
                 self.stopWorking()
@@ -85,28 +77,28 @@ class Rover:
         if self.getOrientation() == Direction.NORTH:
             self.y -= 1
             self.crossEdgeControl()
-            if (self.mars_grid[9 - self.x][self.y] == True):
+            if (self.mars.getCell(9 - self.x, self.y) == 'O'):
                 self.y += 1
                 self.crossEdgeControl()
                 self.stopWorking()
         elif self.getOrientation() == Direction.WEST:
             self.x += 1
             self.crossEdgeControl()
-            if (self.mars_grid[9 - self.x][self.y] == True):
+            if (self.mars.getCell(9 - self.x,self.y) == 'O'):
                 self.x -= 1
                 self.crossEdgeControl()
                 self.stopWorking()
         elif self.getOrientation() == Direction.SOUTH:
             self.y += 1
             self.crossEdgeControl()
-            if (self.mars_grid[9 - self.x][self.y] == True):
+            if (self.mars.getCell(9 - self.x,self.y) == 'O'):
                 self.y -= 1
                 self.crossEdgeControl()
                 self.stopWorking()
         elif self.getOrientation() == Direction.EST:
             self.x -= 1
             self.crossEdgeControl()
-            if (self.mars_grid[9 - self.x][self.y] == True):
+            if (self.mars.getCell(9 - self.x,self.y) == 'O'):
                 self.x += 1
                 self.crossEdgeControl()
                 self.stopWorking()
@@ -149,15 +141,16 @@ class Rover:
 
     def createMapMars(self):
         map_mars = ''
+        self.mars.addObstacle(0,9)
+        self.mars.addRover(5,5)
         for i in range(self.XMAX + 1):
             for j in range(self.YMAX + 1):
-                if self.mars_grid[i][j] == False:
+                if (self.mars.getCell(i,j) != 'O'):
                     if (self.x == i and self.y == j):
                         map_mars += 'R'
                     else:
                         map_mars += '.'
                 else:
                     map_mars += 'O'
-
             map_mars += '\n'
         return map_mars

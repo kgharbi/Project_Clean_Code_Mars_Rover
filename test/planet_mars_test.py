@@ -9,7 +9,7 @@ class PlanetMarsTest:
         # that
         assert mars.getPlanetDimension() == (10, 10)
 
-    def test_that_it_returns_a_cell_of_planet_mars(self):
+    def test_that_it_gets_a_cell_of_planet_mars(self):
         #given
         mars = PlanetMars(10, 10)
 
@@ -25,3 +25,13 @@ class PlanetMarsTest:
 
         #then
         assert mars.getCell(9, 9) == 'O'
+
+    def test_that_it_adds_a_rover_to_planet_mars(self):
+        # given
+        mars = PlanetMars(10, 10)
+
+        # when
+        mars.addRover(5, 5)
+
+        # that
+        assert mars.getCell(5, 5) == 'R'

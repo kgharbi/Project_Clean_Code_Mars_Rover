@@ -15,7 +15,9 @@ class PlanetMars:
 
     def addObstacle(self, position_x, position_y):
         self.mars[position_x][position_y] = 'O'
-        print(self.mars[position_x][position_y])
+
+    def addRover(self, position_x, position_y):
+        self.mars[position_x][position_y] = 'R'
 
 
 
