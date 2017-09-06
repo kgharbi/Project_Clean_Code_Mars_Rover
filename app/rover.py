@@ -43,7 +43,7 @@ class Rover:
                 self.turnsLeft()
             if action == Command.RIGHT:
                 self.turnsRight()
-            time.sleep(0.5)
+            #time.sleep(0.5)
             print(self.createMapMars())
 
     def moveForward(self):
@@ -54,6 +54,10 @@ class Rover:
                 self.y -= 1
                 self.crossEdgeControl()
                 self.stopWorking()
+
+
+
+
         elif self.getOrientation() == 'W':
             self.x -= 1
             self.crossEdgeControl()
